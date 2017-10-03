@@ -1,2 +1,1 @@
-# notes
-Personal class notes
+# Personal class notes
