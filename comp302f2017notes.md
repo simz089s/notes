@@ -130,3 +130,81 @@ let integral f (a, b) dx =
 - fold (reduce)
 
 ---
+
+# 2017-10-05
+
+## Church and the Lambda Calculus!
+
+```
+True  = \x.\y.x # Takes two arguments and throws out second one
+False = \x.\y.y # throws out first one
+```
+
+```ocaml
+(* We can also bind variabl to functions. *)
+let area : float -> float = function r -> pi *. r *. r
+
+(* or more conveniently, we write usually *)
+let area (r:float) = pi *. r *. r
+```
+
+Curry function
+- take as input a function _f:('a * 'b) -> 'c_
+- returns as a result a function _'a -> 'b -> 'c_
+
+```ocaml
+(* int * int -> int *)
+let plus' (x,y) = x + y
+let plus x y = x + y
+
+(* curry : (('a * 'b) -> 'c) -> 'a -> 'b -> 'c *)
+(* Note : Arrows are right-associative.        *)
+let curry f = (fun x y -> f (x, y))
+let curry f =  fun x y -> f (x, y)
+
+let curry_version2 f x y = f (x,y)
+
+let curry_version3 = fun f -> fun x -> fun y -> f (x,y)
+
+fun x y -> plus' (x,y) (* = <fun> *)
+```
+
+- ### We never evaluate body of function. See _fun_ we're done.
+
+```ocaml
+let uncurry f = fun (x,y) -> f x y
+
+(* swap : ('a * 'b -> 'c) -> 'b * 'a -> 'c *)
+
+let swap f = fun (b,a) -> f (a,b)
+
+(* swap plus' ===> fun (b,a) -> plus' (a,b) *)
+
+let deriv (f, dx) = fun x -> (f (x +. dx) -. f x) /. dx
+```
+
+What is the result of evaluating _curry plus'_ ?
+
+=> It's a function!
+
+Result: _fun x y -> plus' x y_
+
+### Generating functions!
+
+```ocaml
+let plusSq x y = x * x + y
+
+let horriblyExpensiveThing(x) = x * x
+
+(* How about forcing computation of (x * x) for efficiency? *)
+
+let betterPlusSq x =
+  let x = horriblyExpensiveThing(x)
+  in fun y -> x + y
+```
+
+What is the result of _betterPlusSq 3_ ?
+
+=> _let x = **horriblyExpensiveThing 3** in fun y -> x + y -> fun y -> 9 + y_
+
+---
