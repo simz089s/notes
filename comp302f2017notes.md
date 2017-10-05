@@ -1,3 +1,8 @@
+# ___COMP 302 Programming Languages and Paradigms___
+## __Functional programming__
+
+---
+
 # 2017-09-08
 
 ## Insert in Binary Search Tree
@@ -123,3 +128,5 @@ let integral f (a, b) dx =
 - map
 - filter
 - fold (reduce)
+
+---
