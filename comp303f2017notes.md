@@ -322,3 +322,43 @@ The exception is part of the interface!
 > INTERFACE!!
 
 As such we must test it, unlike with precondition where we just exclude its possibility.
+
+---
+
+# 2017-10-05
+
+## Testing (cont.)
+
+### (Branch) Coverage
+
+> Not perfect
+
+- Criterion
+
+- Subsumtion (A subsumes B = you have A, you have B)
+
+- PATH! are important.
+
+EclEmma checks bytecode.
+
+```java
+if (pA && pB && pC)
+{
+  ...
+}
+
+/* becomes */
+
+if (pA)
+{
+  if (pB)
+  {
+    if (pC)
+    {
+      ...
+    }
+  }
+}
+```
+
+---
