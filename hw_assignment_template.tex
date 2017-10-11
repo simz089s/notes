@@ -1,0 +1,88 @@
+\documentclass[11pt,letterpaper]{article}
+%\documentclass[11pt,letterpaper]{exam}
+\usepackage[latin1]{inputenc}
+\usepackage[left=3.00cm, right=3.00cm, top=3.00cm, bottom=3.00cm]{geometry}
+
+\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{cancel}
+\usepackage{mathtools}
+%\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+%\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage{color}
+%\usepackage{xcolor}
+%\usepackage{graphicx}
+\usepackage{caption}
+%\definecolor{acolour}{rgb}{0,0.0,0}
+
+%\usepackage{url}
+\usepackage{listings}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	%frame=tb,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+
+\newcounter{nalg}[section] % defines algorithm counter for chapter-level
+\renewcommand{\thenalg}{\thechapter .\arabic{nalg}} %defines appearance of the algorithm counter
+\DeclareCaptionLabelFormat{algocaption}{Algorithm \thenalg} % defines a new caption label as Algorithm x.y
+
+\lstnewenvironment{algorithm}[1][] %defines the algorithm listing environment
+{   
+    \refstepcounter{nalg} %increments algorithm number
+    \captionsetup{labelformat=algocaption,labelsep=colon} %defines the caption setup for: it uses label format as the declared caption label above and makes label and caption text to be separated by a ':'
+    \lstset{ %this is the stype
+        mathescape=true,
+        frame=tB,
+        numbers=left, 
+        numberstyle=\tiny,
+        basicstyle=\scriptsize, 
+        keywordstyle=\color{blue}\bfseries\em,
+        keywords={,input, output, return, datatype, function, in, if, else, foreach, while, begin, end, true, false, int, for, then, } %add the keywords you want, or load a language as Rubens explains in his comment above.
+        numbers=left,
+        xleftmargin=.02\textwidth,
+        #1 % this is to add specific settings to an usage of this environment (for instnce, the caption and referable label)
+    }
+}
+{}
+
+\author{Simon Zheng\\260744353}
+\title{Homework $0$}
+\date{$MONTH$ $DAY$$^{\textnormal{SUFFIX}}$, $YEAR$}
+\lhead{$COURSE CODE$}
+%\chead{Homework $$}
+\rhead{$COURSE NAME$}
+
+\begin{document}
+	\maketitle
+	\thispagestyle{fancy}
+	
+	\section{}
+		\begin{center}
+			Algorithm: BDFS(Vertex $u$)
+		\end{center}
+		\begin{algorithm}[caption={}, label={alg1}]
+			Input: A vertex $u$ in a graph $G$
+			Output: 
+			
+			
+		\end{algorithm}
+	
+\end{document}
