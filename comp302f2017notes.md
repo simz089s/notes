@@ -208,3 +208,15 @@ What is the result of _betterPlusSq 3_ ?
 => _let x = **horriblyExpensiveThing 3** in fun y -> x + y -> fun y -> 9 + y_
 
 ---
+
+# 2017-10-06
+
+## Midterm questions
+
+- What is the type? Error? Etc.
+- Programming in OCaml
+  - Higher-order functions using map, for_all, filter, exists
+- Induction proof!
+- See _midterm_higher_order_practice.ml_
+
+---

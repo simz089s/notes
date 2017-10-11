@@ -362,3 +362,117 @@ if (pA)
 ```
 
 ---
+
+# 2017-10-10
+
+## Review 1
+
+```java
+//package ...;
+
+import java.util.Arrays;
+
+public class Hand implements Iterable<Card>
+{
+  private Card[] aCards = new Card[10];
+
+  @Override
+  public Iterator<Card> iterator()
+  {
+    return Arrays.asList(aCards).iterator();
+  }
+
+  //public int compar()
+
+  public static void main(String[] args)
+  {
+    Comparator<Hand> comp = createComparator(Rank.ACE);
+  }
+
+  private int countCard(Rank pRank)
+  {
+    int total = 0;
+    for (Card card : aCards)
+    {
+      if (card.getRank() == pRank)
+      {
+        total++;
+      }
+    }
+    return total;
+  }
+
+  public static Comparator<Hand> createComparator(Rank pRank)
+  {
+    return (h1, h2) -> h1.countCards(pRank) - h2.countCards(pRank);
+    // or
+    return new Comparator<Hand>()
+    {
+      @Override
+      public int compare(Hand h1, Hand h2)
+      {
+        return h1.countCards(pRank) - h2.countCards(pRank);
+      }
+    };
+  }
+}
+```
+
+### Machine aggregates Beverage flyweight pattern
+```java
+import java.util.HashMap;
+
+public class Beverage
+{
+  private final String aName; // assume unique in the software
+  private final int aPrice;
+
+  private final static HashMap<String, Beverage> ALL_BEVERAGES = new HashMap<>();
+
+  private Beverage(String pName)
+  {
+    aName = pName;
+    aPrice = Catalog.getPrice(pName);
+  }
+
+  public static Beverage get(String pName)
+  {
+    if (!ALL_BEVERAGES.containsKey(pName))
+    {
+      ALL_BEVERAGES.put(pName, new Beverage(pName));
+    }
+    assert ALL_BEVERAGES.containsKey(pName); // Shouldn't fail, but what if the code changes? Assumptions Change
+    return ALL_BEVERAGES.get(pName);
+  }
+}
+```
+
+```java
+import java.util.Iterator;
+import java.JUnit.assertEquals;
+
+public class Util
+{
+  @Test public void testIt()
+  {
+    List<Card> = new LinkedList<>();
+    list.add(new Card(Rank.ACE, Suit.CLUBS));
+    list.add(new Card(Rank.EIGHT, Suit.Clubs));
+    assertEquals(1, countAces(list));
+  }
+
+  public static int countAces2(List<Card> pCards)
+  {
+    int total = 0;
+    Iterator<Card> iterator = pCards.iterator();
+    while (iterator.hasNext())
+    {
+      Card card = iterator.next();
+      if (card.getRank() == Rank.ACE)
+      {
+        total++;
+      }
+    }
+  }
+}
+```
