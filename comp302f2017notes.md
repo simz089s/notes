@@ -220,3 +220,31 @@ What is the result of _betterPlusSq 3_ ?
 - See _midterm_higher_order_practice.ml_
 
 ---
+
+# 2017-10-12
+
+```ocaml
+let rec split h = match h with
+  | Empty -> Empty, Empty
+  | Hand (c, Empty) -> h, Empty
+  | Hand (c1, Hand (c2, h')) ->
+    let first, second = split h' in
+    Hand (c1, first), Hand (c2, second)
+
+type ingredient = Nuts | Gluten | Eggs | Milk
+type cup_cake = Cup_cake of float * float * int * ingredient list
+
+let allergen_free allergens l =
+  List.filter (function Cup_cake (_, _, _, ings) ->
+    List.for_all (function ing ->
+      not @@ List.exists (fun al -> al = ing)
+    allergens)
+  ings) l
+
+let allergen_free2 allergens l =
+  List.filter (fun (_, _, _, als) ->
+    not @@ List.exists (fun i ->
+      List.mem i als)
+    allergens) l
+
+```
