@@ -248,3 +248,45 @@ let allergen_free2 allergens l =
     allergens) l
 
 ```
+
+# 2017-10-13
+
+## Multiparadigm languages and imperative programming in OCaml
+
+### Mutable variables (ref)
+
+```ocaml
+let x = ref 0
+```
+
+> Allocates a reference cell with the name x in memory and initializes it to 0
+
+```ocaml
+let x = ref 0
+let y = ref 0
+
+(* x =  y true
+ * x == y false *)
+
+(* Read a value *)
+!x
+
+(* Records *)
+let {contents = x} = r
+
+(* Update var *)
+x := 3
+
+(* int ref = {contents = 0}*)
+let r = ref 0
+let s = ref 0
+
+r = s (* true *)
+r == s (* false *)
+
+let () = r := 3
+!r
+```
+
+- ref function (get messy) -> once defined, fun type is fixed
+- shadow refs
