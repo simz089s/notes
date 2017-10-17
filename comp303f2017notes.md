@@ -476,3 +476,117 @@ public class Util
   }
 }
 ```
+
+---
+
+# 2017-10-17
+
+```java
+public class MidtermIterator implements Iterable<T>
+{
+	private List<Show> aShows;
+	
+	public Iterator<Movie> iterator()
+	{
+		List<Movie> movies = new ArrayList<>();
+		for (Show show : aShows)
+		{
+			Movie movie = show.getFirst();
+			if (!movies.contains(movie))
+			{
+				movies.add(movie);
+			}
+			
+		}
+	}
+}
+
+/**/
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CompositeShow implements Show
+{
+	private String aName;
+	List<Show> aShows = new ArrayList<>();
+	
+	public CompositeShow(String pName, Show... pShows)
+	{
+		aName = pName;
+		for (Show show : pShows)
+		{
+			aShows.add(show);
+		}
+	}
+	
+	@Override
+	public String description()
+	{
+		// If you are not delegating to component... problem?
+		StringBuilder builder = new StringBuilder();
+		builder.append("[Show: " + aName);
+		for (Show show : aShows)
+		{
+			builder.append(show.description());
+		}
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	@Override
+	public int runningTime()
+	{
+		int total = 0;
+		for (Show show : aShows)
+		{
+			total += show.runningTime();
+		}
+		return total;
+	}
+}
+
+/**/
+@Override
+public Iterator<Movie> iterator()
+{
+	// General iterator implementation/inheritance
+	List<Movie> movies = new ArrayList<>();
+	for (Show show : aShows)
+	{
+		for (Movie m : show)
+		{
+			movies.add(m);
+		}
+	}
+	return movies.iterator();
+}
+
+/**/
+
+public class ConferenceShow
+{
+	private Show aDecoratee;
+	
+	public ConferenceShow(String pSpeaker, int pTime, Show pDecorated)
+	{
+		///
+	}
+	
+	@Override
+	public String description()
+	{
+		
+	}
+	
+	@Override
+	public int runningTime()
+	{
+		return aTime + aDecorated.runningTime();
+	}
+}
+```
+
+Compositor + Decorator
+
+---
