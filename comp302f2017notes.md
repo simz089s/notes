@@ -249,6 +249,8 @@ let allergen_free2 allergens l =
 
 ```
 
+---
+
 # 2017-10-13
 
 ## Multiparadigm languages and imperative programming in OCaml
@@ -286,7 +288,69 @@ r == s (* false *)
 
 let () = r := 3
 !r
+
+let rot (a,b,c) = (c,b,a)
+
+let rotten (a,b,c) = let t = !a in a := !c ; c := t ; (a,b,c)
+
+let triple = (ref 1, ref 2, ref 3)
+
+let triple_rott = rotten triple
+
+let () = for i = 1 to 3 do print_int i
 ```
 
 - ref function (get messy) -> once defined, fun type is fixed
 - shadow refs
+
+---
+
+# 2017-10-17
+
+- An expression has a type
+- An expression evaluates to a value (or diverges).
+
+
+- Type
+  - (""return"" type e.g. int -> float * (int -> float))
+- Value
+  - (""return"" value e.g. <fun>, fun x -> x, 5, 5.0)
+- Effect
+  - (actual side effect e.g. changes value of x, nothing)
+
+Scratchpad dump:
+
+```ocaml
+# let fn = fun x -> x := 3
+
+val fn : int Pervasives.ref -> unit = <fun>
+
+# let set_get_val x y = x := y ; !x
+
+val set_get_val : 'a Pervasives.ref -> 'a -> 'a = <fun>
+
+# let set_get_ref x y = x := y ; x
+
+val set_get_ref : 'a Pervasives.ref -> 'a -> 'a Pervasives.ref = <fun>
+
+# type 'a rlist = Empty | RCons of 'a * ('a rlist) ref
+
+type 'a rlist = Empty | RCons of 'a * 'a rlist Pervasives.ref
+
+# let l1 = ref (RCons (4, ref (RCons (5, ref Empty))))
+
+val l1 : int rlist Pervasives.ref =
+  {contents = RCons (4, {contents = RCons (5, {contents = Empty})})}
+
+# let l2 = ref (RCons (3, l1))
+
+val l2 : int rlist Pervasives.ref =
+  {contents =
+    RCons (3,
+     {contents = RCons (4, {contents = RCons (5, {contents = Empty})})})}
+
+(* Cyclic list! *)
+# let () = l1 := !l2
+```
+
+---
