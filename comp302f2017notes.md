@@ -1,7 +1,7 @@
 # ___COMP 302 Programming Languages and Paradigms___
 ## __Functional programming__
-
 ---
+
 
 # 2017-09-08
 
@@ -354,3 +354,33 @@ val l2 : int rlist Pervasives.ref =
 ```
 
 ---
+
+# 2017-10-19
+
+```ocaml
+type 'a rlist = Empty | RCons of 'a * ('a rlist) ref
+
+let l1 = ref (RCons (4, ref Empty))
+let l2 = ref (RCons (5, l1))
+
+let rec append l1 l2 = match l1 with
+  | [] -> l2
+  | x :: xs -> x :: (append xs l2)
+
+let rec rapp (r1 : 'a refList) (r2 : 'a refList) = match r1 with
+  | {contents = Empty} -> r1 := !r2
+  | {contents = RCons (x, xs)} -> rapp xs r2
+
+type counter_obj = {tick : unit -> int ; reset : unit -> unit}
+
+let global_counter = ref 0
+
+let makeCounter () =
+  let counter = ref 0 in
+    {tick  = (fun () -> (counter := !counter + 1 ; !counter)) ;
+     reset = (fun () ->  counter := 0) }
+
+let c = makeCounter ()
+let timer = c.tick ()
+let () = c.reset ()
+```
