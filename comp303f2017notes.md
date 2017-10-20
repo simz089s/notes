@@ -590,3 +590,20 @@ public class ConferenceShow
 Compositor + Decorator
 
 ---
+
+# 2017-10-19
+
+- NullShow implements Show
+- Singleton
+- NullMove
+
+See SoftwareDesignCode
+
+- Shallow copy
+- Deep copy
+
+## Command pattern
+
+```java
+Command command = () -> aShows[pDay.ordinal()] = pShow;
+```
