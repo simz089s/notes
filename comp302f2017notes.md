@@ -384,3 +384,58 @@ let c = makeCounter ()
 let timer = c.tick ()
 let () = c.reset ()
 ```
+
+---
+
+# 2017-10-20
+
+## Exceptions
+
+```ocaml
+let head_of_empty_list =
+  let head (x::t) = x in
+    head []
+```
+
+> Warning 8: this pattern-matching is not exhaustive.  
+Here is an example of a value that is not matched:  
+[]  
+Exception: Match_failure ("//toplevel//", 9, 9).
+
+1. Signal Error
+   - raise Domain
+2. Handle an exception
+   - try \<exp\> with Domain -> \<exp\>
+
+```ocaml
+exception Domain of string
+
+...
+  ... raise (Error "Invalid Input")
+...
+
+try ...
+with Error "Invalid Input" -> ...
+   | Error msg -> ...
+
+type 'a btree = Empty | Node of 'a btree * 'a * 'a btree
+
+let rec findOpt t k = match t with
+  | Empty -> None
+  | Node (l, (k', d), r) ->
+    if k = k' then Some d
+    else
+      (match findOpt l k with
+         | None -> findOpt r k
+         | Some d -> Some d)
+
+exception Not_Found = Not_found
+
+let rec find t k = match t with
+  | Empty -> raise Not_Found
+  | Node (l, (k', d), r) ->
+    if k = k' then d
+    else (try find l k with Not_Found -> find r k)
+
+(* Pre-order DFS search *)
+```
