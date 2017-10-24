@@ -439,3 +439,55 @@ let rec find t k = match t with
 
 (* Pre-order DFS search *)
 ```
+
+---
+
+# 2017-10-24
+
+## Backtracking
+
+### Coin change problem
+
+- change : int list -> int -> int list
+  - list of coins -> amt -> [c1; c3; c5]
+  - c1+c3+c5 = amt
+
+**Assumptions:**
+- List of coins is ordered
+- Each coin in our list can be used as often as needed
+
+```
+change [6; 5; 2] 9      |    change [2] 1
+change [6; 5; 2] 3      |
+[5; 2; 2]               |
+```
+
+```ocaml
+(* No idea why this function is here. *)
+let listToString l = match l with
+  | [] -> ""
+  | l ->
+    let rec toString l = match l with
+      | [h]  -> string_of_int h
+      | h::t -> string_of_int h ^ ", " ^ toString t
+    in
+      toString
+
+(* Part actually relevant to class *)
+exception Change
+
+let rec change coins amt =
+  if amt = 0 then []
+  else
+    (match coins with
+      | [] -> raise Change (* Fail and raise the exception *)
+      | coin::cs ->
+        (if coin > amt then change cs amt
+         else (* coin <= amt *)
+          try coin::(change coins (amt - coin))
+          with Change -> change cs amt
+        )
+    )
+```
+
+---
