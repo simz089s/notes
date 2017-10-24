@@ -607,3 +607,19 @@ See SoftwareDesignCode
 ```java
 Command command = () -> aShows[pDay.ordinal()] = pShow;
 ```
+
+---
+
+# 2017-10-24
+
+## ProgramObserver
+```java
+package ca.mcgill.cs.swdesign.m6;
+
+public interface ProgramObserver
+{
+	
+}
+```
+
+Note intention in callback methods
