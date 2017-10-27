@@ -623,3 +623,9 @@ public interface ProgramObserver
 ```
 
 Note intention in callback methods
+
+---
+
+# 2017-10-26
+
+## GUI
