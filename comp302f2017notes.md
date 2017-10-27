@@ -551,3 +551,111 @@ module FS = FloatStack
 - Values (functions declarations) or stuff you don't expose in the signature cannot be seen outside (encapsulation, interface separation)
 
 ---
+
+# 2017-10-27
+
+## Currency module
+
+```ocaml
+module type CURRENCY =
+sig
+  type t
+  val unit : t
+  val plus : t -> t -> t
+  val prod : float -> t -> t
+  val toString : t -> string
+end;;
+
+module Float =
+struct
+  type t = float
+  let unit = 1.0
+  let plus = ( +. )
+  let prod = ( *. )
+  let toString (*x*) = string_of_float (*x*)
+end;;
+
+module Euro = (Float : CURRENCY);;
+module USD = (Float : CURRENCY);;
+module CAD = (Float : CURRENCY);;
+module BitCoins = (Float : CURRENCY);;
+
+let euro x = Euro.prod x Euro.unit
+let usd x = USD.prod x USD.unit
+let cad x = CAD.prod x CAD.unit
+let bitcoins x = BitCoins.prod x BitCoins.unit
+
+(* What if declare CURRENCY type in Float module instead of
+ * Euro, USD, etc. modules? *)
+
+module Float : CURRENCY =
+...
+
+module Euro = Float;;
+module USD = Float;;
+...
+
+(* They now share... (GASP) *)
+
+module type CLIENT =
+  sig
+    type t (* account *)
+    type currency
+    val deposit : t -> currency -> currency
+    val withdraw : t -> currency -> currency
+    val print_balance : t -> string
+  end ;;
+
+module type BANK =
+  sig
+    include CLIENT (* Inheritance *)
+
+    val create : unit -> t
+
+  end
+
+(* Parameterize a module Old_Bank with the functionality
+ * provided by the module type CURRENCY *)
+
+(* This is a *** FUNCTOR *** !
+ * Takes in another module
+ * No need to implement multiple times
+ * Just use this and update this when needed *)
+module Old_Bank (M : CURRENCY) : (BANK with type currency = M.t) =
+struct
+  type currency = M.t
+  type t = { mutable balance = currency }
+
+  let zero = M.prod 0.0 M.unit
+  let neg = N.prof (-1.0)
+
+  let create() = { balance = zero }
+
+  let deposit c x =
+    if x > zero then
+      c.balance <- M.plus c.balance x;
+      c.balance
+
+  let withdraw c x =
+    if c.balance > x then
+      deposit c (neg x)
+    else
+      c.balance
+
+  let print_balance c = M.toString (c.balance)
+end ;;
+
+(* Old post offices used to be banks *)
+
+module Post = Old_Bank (Euro);;
+(* Make the client a bank but only see client stuff
+ * Only expose client functionality (defined in CLIENT) *)
+module Post_Client : (CLIENT with type currency = Post.currency and type t = Post.t)
+= Post;;
+
+module Citybank = Old_Bank (USD);;
+module Citybank_Client : (CLIENT with type currency = Citybank.currency and type t = Citybank.t)
+= Citybank;;
+```
+
+---
