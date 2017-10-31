@@ -659,3 +659,70 @@ module Citybank_Client : (CLIENT with type currency = Citybank.currency and type
 ```
 
 ---
+
+# 2017-10-31
+
+## Continuations
+
+### Can every recursive function be written tail recursively?
+
+- Yes! Using continuations.
+
+> A continuation is a stack of functions modelling the call stack i.e. the work we still need to do upon returning.
+
+If we have 1 :: ___ then what goes in the blank/hole? A function! Just like in math.
+
+- app_tl l k code
+  - 'a list -> 'a list -> ('a list -> 'a list)
+
+```ocaml
+append [1;2] [3;4]
+1 :: append [2] [3;4]
+1 :: 2 :: append [] [3;4]
+c = fun r -> 1 :: 2 :: r
+c k -> 1 :: 2 :: [3;4]
+
+(* How do we get to the end of the list and then start
+ * pushing everything back?
+ *
+ * What is the initial value (base case)? The identity
+ * function! *)
+
+app_tl [1;2] [3;4] (fun r -> r)
+-> app_tl [2] [3;4] (fun r1 -> (fun r -> r) (1 :: r1))
+-> app_tl [] [3;4]
+   (fun r2 ->
+     (fun r1 ->
+       (fun r -> r)
+     (1::r1))
+   (2::r2))
+(* Collapsing the call stack *)
+-> (fun r2 -> (fun r1 -> (fun r -> r) (1::r1)) (2::r2)) [3;4]
+-> (fun r1 -> (fun r -> r) (1::r1)) [2;3;4]
+-> (fun r -> r) [1;2;3;4] -> [1;2;3;4]
+
+(* The trade-off is efficiency for small to medium sized
+ * lists (!!!) but succeeds for larger sizes *)
+
+let rec append l k = match l with
+  | [] -> k
+  | h :: t -> h :: append t k
+
+let rec app_tl l k c = match l with
+  | [] -> c k (* calling the continuation - passing to the call stack k *)
+  | h :: t -> app_tl t k (fun r -> h :: c r)
+
+let rec map l f = match l with
+  | [] -> []
+  | h :: t -> (f h) :: map t f
+
+let map' l f =
+  let rec map_tl l f c =
+    match l with
+    | [] -> c []
+    | h :: t -> map_tl t f (fun r -> c ((f h) :: r))
+  in
+  map_tl l f (fun r -> r)
+```
+
+---
