@@ -710,7 +710,7 @@ let rec append l k = match l with
 
 let rec app_tl l k c = match l with
   | [] -> c k (* calling the continuation - passing to the call stack k *)
-  | h :: t -> app_tl t k (fun r -> h :: c r)
+  | h :: t -> app_tl t k (fun r -> c (h :: r))
 
 let rec map l f = match l with
   | [] -> []
@@ -723,6 +723,10 @@ let map' l f =
     | h :: t -> map_tl t f (fun r -> c ((f h) :: r))
   in
   map_tl l f (fun r -> r)
+
+let ex1 = app_tl [1;2;3] [4;5;6] (fun r -> r)
+let ex2 = map' [1;2;3] (fun x -> x + 1)
+
 ```
 
 ---

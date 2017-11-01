@@ -629,3 +629,59 @@ Note intention in callback methods
 # 2017-10-26
 
 ## GUI
+
+Inversion of Control. Observables and Observers.
+
+# 2017-10-31
+
+# Prototype
+
+Like factory but can be modified dynamically. Always returns same object but different instance (cloning) and can be modified (to after always generate object with new properties).
+
+```java
+public class PrototypeTest
+{
+	private Item prototype = new Item("Test"):
+	
+	public Item generateItem()
+	{
+		return protype.clone();
+	}
+	
+	public Item factory()
+	{
+		return new Item("Test");
+		// Or pass a String pString instead of "Test" but then compare with generateItem which takes no parameters
+	}
+	
+	public void setPrototype(Item pItem)
+	{
+		prototype = pItem;
+	}
+	
+	public class Item implements Cloneable
+	{
+		private final String aString;
+		
+		public Item (String pString)
+		{
+			aString = pString;
+		}
+		
+		@Override
+		public Item clone()
+		{
+			try
+			{
+				Item clone = (Item)super.clone();
+				// clone.aString = new String(... immutable though
+				return clone;
+			}
+			catch (CloneNotSupportedException e)
+			{
+				return null;
+			}
+		}
+	}
+}
+```
