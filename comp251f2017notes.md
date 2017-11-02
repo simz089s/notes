@@ -98,3 +98,171 @@ Holds for all optimal solutions.
 at least d
 
 ---
+
+# 2017-11-02
+
+## Compression (zip)
+
+### Prefix codes searching
+
+- ABL tree
+
+~~  
+frequencies...  
+~~
+
+- Huffman coding
+
+Optimal tree construction
+
+__*THM*__ : _Huffman Code_ has the optimal ABL among all prefix codes.
+
+__*Proof*__ : Let's consider an optimal code __*c*__ that satisfies the proportions mentioned in observations _I_ and _II_.
+
+#### The Proof is by induction :
+
+**Base case** : Only one letter, In this case the best we can do is to assign a 1-bit string to this letter and that is what _Huffman Code_ does.
+
+**I.H.** _Huffman Code_ is optimal if we have __*m*__ letters.
+
+**Induction step** : We want to show that Huffman Code is optimal for _m+1_ letters.
+
+Let c be an optimal code as described above. Consider the tree of __*c*__ :
+
+Optimal tree (not Huffman tree, at least not proven yet)
+~~~
+o-----.--.--.--.
+|     |  |  |
+.--.  .
+|
+.--.--b
+|  |
+.  a
+~~~
+> The two least frequent letters a,b are as in the picture.
+
+Consider the same text but replace occurences of both _**a**_ and _**b**_ with a new character __*|ab|*__. The new text has _**m**_ characters.
+
+~~~
+ex : a b c c c a b
+           |
+     # # c c c # #
+~~~
+
+Let's remove the leaves _**a**_,_**b**_ from the optimal tree and assign _**|ab|**_ to their parent (now a leaf)
+
+#### Call the new code _**c'**_
+
+~~~
+       ABL
+        |
+\sum_x f_x |c(x)|
+
+c(x) = c(x')
+
+~~~
+
+~~
+By induction hypothesis the Huffman coding applied to the new text (the one _**|ab|**_ character) leads to a code with
+
+_**ABL <= ABL(c')**_
+
+Now we compare Huffman Coding of the new text to the old text.
+
+~~~
+o-----.--.--.--.
+|     |  |  |
+.--.  .
+|
+.--#  --b
+|
+.  |
+   a
+~~~
+> Huffman Code of new file
+
+ABL (Huffman original)
+
+= ABL (Huffman for the #) + _f_a_ + _f_b_
+
+_**I.H.**_ ABL (Huffman _f\_.._ #) <= ABL(c') :
+
+showed earlier >= ABL(c') = ABL(c) + _f_a_ + _f_b_  
+ ||  
+\\/  
+ABL(Huffman original) <= ABL(c)
+
+---
+
+## Divide and conquer
+
+- Break up the input into several parts
+- Solve each part _recursively_
+- Combine the solutions to sub-problems into a solution for the original problem
+
+### Example : _Merge Sort_
+
+- Divide the array into two equal parts.
+- Sort each part recursively.
+- Merge the two parts into one sorted array
+
+#### Sort the letters of ALGORITHM
+
+~~~
+A L G O R | I T H M S
+~~~
+> Divide : O(1)
+~~~
+A G L O R | H I M S T
+~~~
+> recurse and sort parts : 2*T(n/2)
+~~~
+A G H I L M O R S T
+~~~
+> Merge : O(n)
+
+_T(n) = 2*T(n/2) + O(n)_
+
+~~~
+T(n) ---- T(n/2) ---- T(n/4)  ^
+|         |                   | 2*n/2
+|         T(n/4)              | 4*n/4
+T(n/2) -- T(n/4)              | log(n)
+|                             |
+|                             |
+T(n/4)                        |
+
+...
+     ---- T(1)
+|
+|
+T(1)                            n/2*2
+
+|_________________________|
+n leaves (n is a power of 2)
+~~~
+> Merging log = n * log n  
+Running Time = O(n * lg n + n) = O(n * log n)
+
+_**Thm**_ :
+~~~
+T(n) <= 2*T(n/2) + c*n  n>1  
+        c               n=1
+~~~
+then _T(n) <= c n log n_ [n is a power of 2]
+
+_**Pf**_ : Assume n=2^m [m in ???]
+
+We use induction on _**m**_.
+
+_**Base**_ : m = 0 : T(2^a) = T(1) <= c
+
+_**I.H.*__ T(2^m) <= c 2^m log 2^m = c 2^m m
+
+_**Induction Step**_ :
+
+T(2^{m+1}) <= 2 T(2^m) ~~
+~~
+~~
+
+---
