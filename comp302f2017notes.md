@@ -730,3 +730,80 @@ let ex2 = map' [1;2;3] (fun x -> x + 1)
 ```
 
 ---
+
+# 2017-11-02
+
+- Tail-recursion : continuation stack...
+- Failure Continuation
+- Success Continuation
+
+~~~ocaml
+type 'a tree = Empty | Node of 'a tree * 'a * 'a tree
+
+let leaf n = Node (Empty, n, Empty)
+
+(* find : ('a -> bool) -> 'a tree -> 'a option *)
+let rec find p t = match t with
+  | Empty -> None
+  | Node (l, d, r) ->
+    if (p d) then Some d
+    else (match find p l with
+      | None -> find p r
+      | Some d' -> Some d')
+
+exception Fail
+
+(* find_ex : ('a -> bool) -> 'a tree -> 'a option *)
+let rec find_ex p t = match t with
+  | Empty -> raise Fail
+  | Node (l, d, r) ->
+    if (p d) then Some d
+    else (try find_ex p l with Fail -> find_ex p r)
+
+let find' p t =
+  (try find_ex p t with Fail -> None)
+
+type fail = FAIL (* Could be used instead of unit *)
+
+(* find_cont : ('a -> bool) -> 'a tree -> (unit -> 'a option) -> 'a option *)
+let rec find_cont p t c = match t with
+  | Empty -> c ()				     (* CALLING THE CONTINUATION *)
+  | Node (l, d, r) ->
+    if (p d) then Some d
+    else find_cont p l (fun () -> find_cont p r c)
+
+let rec find'' p t = find_cont p t (fun () -> None)
+
+(* find_all : ('a -> bool) -> 'a tree -> 'a list *)
+(* IN ORDER *)
+let rec find_all p t = match t with
+  | Empty -> []
+  | Node (l, d, r) ->
+    let el = find_all p l in
+    let er = find_all p r in
+    if (p d) then el @ (d :: er)
+    else el @ er
+
+let rec find_all' p t sc = match t with
+  | Empty -> sc []
+  | Node (l, d, r) ->
+    if (p d) then
+      find_all' p l (fun el -> find_all' p r (fun er -> sc ( el @ (d :: er) )))
+    else
+      assert false
+
+   find_cont p t      (fun () -> None) ------------\/
+-> find_cont p l      (fun () -> find_cont p r     (fun () -> None))
+                      |----------------------------\/--------------|
+-> find_cont p ll     (fun () -> find_cont p lr    ___)
+                      |----------------------------\/-|
+-> find_cont p 3-E-E  (fun () -> find_cont p 7-E-E ___)
+                      |----------------------------\/-|
+-> find_cont p E      (fun () -> find_cont p E     ___)
+
+-> find_cont p E c3 -> find_cont p 7-E-E c2 ->* find_cont p lr c1 ->* find_cont p r c0
+~~~
+
+
+- building a call stack
+- Remember what to do upon failure
