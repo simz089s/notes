@@ -807,3 +807,74 @@ let rec find_all' p t sc = match t with
 
 - building a call stack
 - Remember what to do upon failure
+
+---
+
+# 2017-11-03
+
+## Regular expressions and pattern matching
+
+Patterns for regexes :
+- Singleton : matching a specific character
+- Alternation : choice between two patterns
+- Concatenation : succession of patterns
+- Iterations : indefinite repetition of patterns
+
+_**Backus-Naur Form**_
+> BNF
+~~~
+Regular Expressions r ::= a | r1 r2 | 0 | r1 + r2 | 1 | r*
+~~~
+
+> Questions: When does a string _**s**_ match a regular expression _**r**_?
+- Answer: If _s_ is in the set of terms described by _r_.
+
+Examples:
+- _a(p*)/(e+y)_ would match _apple_ or _apply_ (or ale or apppppppple ...)
+- _g(1+r)(e+a)y_ would match _grey, _gray_ or _gay_.
+- _g(1+o)*(g/e)_ would match _google, gogle, goooogle, ggle_.
+- _b(ob0+oba)_ would match _boba_ but would not succeed on _bob_.
+
+### Code example
+
+- s never matches 0;
+- s matches 1 only if s = empty
+- s matches a iff s = a
+- s matches r1 + r2 iff either s matches r1 xor r2
+- s matches r1 r2 iff s = s1 s2 where s1 matches r1 and s2 matches r2.
+- s matches r* iff either s = empty or s = s1 s2 where s1 matches r and s2 matches r*
+
+#### ap*l(e+y)
+-> (a p*)(l (e+y))  
+~~~
+acc ( Times
+  ( Times ( Char "a", Star (Char "p"))
+  Times (Char "l", Plus (Char "e", Char "y")))
+  )
+["a"; "l"; "e"]
+~~~
+
+~~~ocaml
+type regexp =
+  Char of char | Times of regexp * regexp | One | Zero |
+  Plus of regexp * regexp | Star of regexp
+
+acc : regexp -> char list -> (char list -> bool) -> bool
+              input^string
+acc (Times(r1,r2) s)
+Idea: check if a prefix of s matches r
+
+let rec acc r clist k = match r,clist with
+  | Char c	       , []    -> false
+  | Char c	       , c1::s -> (c = c1)
+  | Times (r1, r2) , s     -> acc r1 s (fun s2 -> acc r2 s2 k)
+  | One		         , s     -> k s
+  | Plus (r1, r2)  , s     -> acc r1 s k || acc r2 s k
+  | Zero		       , s     -> false
+  | Star r	       , s     ->
+    (k s) || acc r s (fun s2 -> not (s = s2) && acc (Star r) s2 k)
+
+let accept r s = acc r (string_explode s) (fun l -> l = [])
+~~~
+
+---
