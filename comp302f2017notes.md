@@ -878,3 +878,66 @@ let accept r s = acc r (string_explode s) (fun l -> l = [])
 ~~~
 
 ---
+
+# 2017-11-07
+
+## Lazy evalution
+
+- Eager
+- Lazy
+
+Infinite data!
+
+Don't think of constructing infinite data but actually defining observation that can be made about them.
+
+- Streams
+
+Suspend and prevent evaluation of an expression
+
+```ocaml
+(* let horribleComp x = x *)
+
+type 'a susp = Susp of (unit -> 'a)
+(* Delay computation *)
+
+(* Force evaluation of suspended computation *)
+let force (Susp f) = f ()
+
+(* Example of suspending and forcing computation *)
+(* let x = Susp(fun () -> horribleComp(345)) in
+  force x + force x *)
+
+type 'a str =
+{ hd : 'a ;
+  tl : ('a str) susp }
+(* Encodes a coinductive definition of infinite streams using the two observations *)
+
+(* Stream of 1, 1, 1, 1, 1 .... *)
+(* ones : int str *)
+
+let rec ones =
+{ hd = 1 ;
+  tl = Susp (fun () -> ones) }
+
+let rec numsFrom n =
+{ hd = n ;
+  tl = Susp (fun () -> numsFrom (n+1)) }
+
+let rec take n s = if n = 0 then []
+  else s.hd :: take (n-1) (force s.tl)
+
+let rec stream_drop n s = if n = 0 then s
+  else stream_drop (n-1) (force s.tl)
+
+let rec pow_seq n k =
+{ hd = n ;
+  tl = Susp (fun () -> pow_seq (n*k) k) }
+
+let rec add s1 s2 =
+{ hd = s1.hd + s2.hd ;
+  tl = Susp (fun () -> add (force s1.tl) (force s2.tl)) }
+
+let rec smap f s =
+{ hd = f s.hd ;
+  tl = Susp (fun () -> smap f @@ force s.tl) }
+```
