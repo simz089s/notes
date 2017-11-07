@@ -685,3 +685,17 @@ public class PrototypeTest
 	}
 }
 ```
+
+---
+
+# 2017-11-07
+
+## Classes and overriding and overloading
+
+```java
+super();
+```
+
+> Too confusing for notes
+
+---
