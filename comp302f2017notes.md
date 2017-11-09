@@ -941,3 +941,19 @@ let rec smap f s =
 { hd = f s.hd ;
   tl = Susp (fun () -> smap f @@ force s.tl) }
 ```
+
+---
+
+# 2017-11-09
+
+# Lazy eval (cont)
+
+Laptop ran out of batteries...
+
+But cool stuff!
+
+- Fib, sieve + sfilter + find_h, nats, etc.
+
+> Mindblowing stuff! Trust me.
+
+---

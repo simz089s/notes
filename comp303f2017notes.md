@@ -699,3 +699,73 @@ super();
 > Too confusing for notes
 
 ---
+
+# 2017-11-09
+
+## Inheritance and Abstract Classes
+
+### Template pattern
+
+- final
+
+> For final check static vs runtime and clone and super
+
+```java
+protected abstract Shape getShape()
+{
+  // protected because...
+}
+
+@Override
+public final boolean contains(Point2D pPoint)
+{
+  // final to prevent overriding as it's an absolute "rule" for all extending classes
+}
+```
+
+### Adapter Pattern
+
+- Adapt incompatible interfaces
+
+> Subclasses shouldn't break functionality from their superclasses but only add, invisibly
+
+- e.g. superclass perfectly encapsulated, has protected etc. stuff but subclass just returns it anyway (lol)
+- Ellipse example
+- Liskov Substitutability Principle
+
+> Liskov Substitutability Principle
+
+### Liskov Substitutability Principle
+
+> A method in a subclass overriding a method in a superclass **can never restrict** what the clients of the superclass can do. The method:
+> - Can't have a stricter preconditions
+> - Can't have more specific arguments
+> - Can't have more general return types
+> - 
+> - 
+> - 
+
+Manager extends Employee, Employee has a max salary/compensation amount precond, but Manager changes to more. Makes sense? But breaks the principle!
+
+setMentor also violates the principle
+```java
+public void setMentor(Employee e)
+{
+  // In Employee class
+}
+
+public void setMentor(Manager e)
+{
+  // In Manager class
+}
+```
+
+Overloading prevents breaking LSP, but using overloading is still wonky.
+
+- Now what if getName() returns String but subclass returns Object? (Won't compile anyway.) Subclass restricts superclass!
+
+#### Avoid compositional inheritance.
+
+- Either use inheritance or composition.
+
+---
