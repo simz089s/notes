@@ -957,3 +957,93 @@ But cool stuff!
 > Mindblowing stuff! Trust me.
 
 ---
+
+# 2017-11-10
+
+## Programming Languages
+
+### Three key questions
+
+- What are syntactically legal expressions?
+- What are well-typed expressions for the parser?
+- ...
+
+> The set of expressions is defined inductively by the following clauses
+
+- A number _n_ is an expression.
+- The booleans **true** and **false** are expressions.
+- If _e1_ and _e2_ are expressions, then _e1_ op _e2_ is an expressions where op = {+,=,-,*,<}.
+- If _e1_, _e2_ and _e3_ are expressions, then if _e_ then _e1_ else _e2_ is an expression.
+
+#### Abstract Syntax Tree
+
+----------------Syntax Error--------Type Error--Run-Time Error/Exceptions  
+Source -> Lexer -> Parser -> Type Checker -> Interpreter Evaluation  
+----------|-------------1--------------|---------2-----------
+
+Alternative - Backus-Naur Form (BNF):
+
+- Operations op ::= + | - | * | < | =
+- Expressions _e_ ::= _n_ | _e1_ op _e2_ | **true** | **false** | **if _e_ then _e1_ else _e2_**
+
+> How to implement expressions in OCaml?
+
+### Representation in OCaml
+
+```ocaml
+type primop = Equals | LesssThan | Plus | Minus | Times
+
+type exp =
+| Int of int                  (* 0 | 1 | 2 | ... *)
+| Bool of bool                (* true | false *)
+| If of exp * exp * exp       (* if e then e1 else e2 *)
+| Primop of primop * exp list (* e1 <op> e2 or <op> e *)
+```
+
+#### Example:
+```
+if 3 < 0 then 1 else 0 is represented as
+
+If (Primop (LessThan, [Int 3 ; Int 0]) , Int 1, Int 0)
+```
+
+### How to evaluate an expression?
+
+- How to describe evaluation of expressions>
+
+We want to say:
+
+> Expression _e_ evaluates to a value _v_
+
+...defined inductively by the following clauses:
+
+- A value _v_ evaluates to itself.
+- If expressions _e_ evaluates to the value true and expression _e1_ evaluates to a value _v_, then **if _e_ then _e1_ else _e2_** evaluates to the values _v_.
+- If expressions _e_ evaluates to the value **false** and expressions _e2_ evaluates to a value _v_, then **if _e_ then _e1_ else _e2_** evaluates to the value _v_.
+
+> Very verbose! We can do better.
+
+Let's write
+
+```
+e || v
+  \/
+
+ for
+
+"Expression e evaluates to value v"
+```
+
+#### Step 2: Turning informal description into a formal one
+
+premise_1 ... premise_n  
+------------------------------------ name  
+conclusion
+
+```
+               e \||/ true       e1 \||/ v
+-------- B-VAL --------------------------- B-IFTRUE
+v \||/ v       if e then e1 else e2 \||/ v
+```
+
+> B-IFTRUE big if true haha
