@@ -1044,6 +1044,106 @@ conclusion
                e \||/ true       e1 \||/ v
 -------- B-VAL --------------------------- B-IFTRUE
 v \||/ v       if e then e1 else e2 \||/ v
+
+               e \||/ false      e1 \||/ v
+               --------------------------- B-IFFALSE
+               if e then e1 else e2 \||/ v
 ```
 
 > B-IFTRUE big if true haha
+
+---
+
+# 2017-11-14
+
+## Programming language (cont.)
+
+### Step 1: Turning an informal idea into a formal description
+
+e \\||/ v ...
+
+### Step 2: Turning an informal description into a formal one
+
+...
+
+(See previous lecture.)
+
+> Task: Implement a function **eval** that does what e \\||/ v describes
+
+```ocaml
+let rec evalOp op = match op with
+| ...
+
+let rec eval e = match e with
+| Int _ -> e
+| Bool _ -> e
+| If (e, e1, e2) ->
+    (match eval e with
+     | Bool true -> eval e1
+     | Bool false -> eval e2
+     | _ -> raise (Stuck "guard is not a bool"))
+    (* ADD : primitive operations +, -, *, <, = *)
+| Primop (op, args) ->
+    let argvalues = List.map eval args in
+    (match evalOp (po, argvalues) with
+     | Some v -> v
+     | None -> raise (Stuck "wrong arguments passed to prim. op")
+    )
+```
+
+### Establish properties and formal guarantees.
+
+- Coverage: For all expressions _e_ there exists an evaluation rule.
+- Determinacy: If _e_ \\||/ _v1_ and _e_ \\||/ _v2_ then _v1_ = _v2_.
+- Value Soundness: ...
+
+### Static Type Checking
+
+- Types approximate runtime behaviour
+- Lightweight tool for reasoning about programs
+- Detect errors statically, ,early in the development cycle
+- Great for code maintenant
+- Precise error messages
+- Checkable ...
+
+> Types classify expressions according to the kinds of values they compute.
+
+Hm ... what are values?
+
+Values _v_ ::= _n_ | **true** | **false**
+
+Hence, there are only two basic types.
+
+Types _T_ ::= int | bool
+
+#### Type Checking _e_ : _T_
+
+Given the expression _e_ and the type _T_, we check that _e_ does have type _T_.
+
+#### Type Inference _e_ : _T_
+
+Given the expression _e_, we infer its type _T_.
+
+### Type Inference
+
+```ocaml
+type E ...
+
+type tp = Int | Bool
+exception ...
+
+(* infer : exp -> tp *)
+let infer e = match e with
+  | E.Int _ -> Int
+  | E.Bool _ -> Bool
+  | E.If (e, e1, e2) -> (match infer e with
+    | Bool ->
+      let t1 = infer e1 in
+      let t2 = infer e2 in
+      if t1 = t2 then t1
+        else fail ("Expected type " ^ typ_to_string t1 ^ " - Inferred type " ^ typ_to_string t2)
+    | t -> fail ("Expected type Bool" ^ " - Inferred type " ^ typ_to_string t)
+```
+
+---
+---
