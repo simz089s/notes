@@ -769,3 +769,51 @@ Overloading prevents breaking LSP, but using overloading is still wonky.
 - Either use inheritance or composition.
 
 ---
+
+# 2017-11-14
+
+## Visitor Design Pattern
+
+- "Plugin system"
+
+### Filesystem example
+
+```
+«interface»
+Visitor
+---
+void visitConcreteFile(ConcreteFile)
+void visitDirectory(Directory)
+void visitSymLink(SymLink)
+```
+
+Implement **void accept(Visitor)** in every class
+
+- pVisitor.visit<CLASS>(this)
+
+> #### Visitor methods are callbacks
+
+~~~java
+// Before visitor:
+File root = //...
+root.list();
+// now with the visitor:
+root.accept(new ListDirectory());
+~~~
+
+- Put recursion in class hierarchy or visitor (inside accept method, accept visitor then callback then callback accept on children)
+
+~~ bunch of stuff
+
+> I'm getting confused
+
+### When to put accept() in class hierarchy or Visitor?
+
+- Class hierarchy to get private fields
+- Visitor to get control (e.g. can't modify librairy classes but can modify your Visitor)
+
+~~ blablablabla more confusing stuff :'(
+
+> And it returned Computer Science!
+
+---
