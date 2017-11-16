@@ -1147,3 +1147,50 @@ let infer e = match e with
 
 ---
 ---
+
+# 2017-11-16
+
+## ... Variable scopes
+
+~~~ocaml
+let x = ... in ... end
+
+(* First x is new x, second x is previous x, third x is first x *)
+let x = x in x
+~~~
+
+### Function FV that returns (free?bound?) variables in scope
+
+- FV(_e1 op e2_) = FV(_e1_) union FV(_e2_)
+- FV(_n_) = {}
+- FV(_x_) = {_x_}
+- FV(_let x = e1 in e2_) = FV(_e1_) union ( FV(_e2_)\\{_x_} )
+- FV(_if e then e1 else e2_) = FV(_e_) union FV(_e1_) union FV(_e2_)
+
+Functions and pattern matching also bind variables!
+
+How to generate (_internal_) variable names? (For distinct same-name variables)? i.e. how to keep track of all the defined variable?
+
+- String + count
+
+FV function:
+
+~~~ocaml
+(* union : 'a list * 'a list -> 'a list *)
+let rec free_vars e = match e with
+  | Int _ -> []
+  | Bool _ -> []
+  | If (e, e1, e2) -> union (free_vars e, union (free_vars e1, free_vars e2))
+  | Let (Val (e1, x), e2) -> union (free_vars e1, delete ([x], free_vars e2))
+  | Primop (po, args) -> List.fold_right (fun e fv -> union (fv, free_vars e)) args []
+~~~
+
+## Substitution next time...
+
+> Let's define it as:  
+[e'/x]e Replace all **free** ...
+
+---
+---
+
+# 2017-11-
