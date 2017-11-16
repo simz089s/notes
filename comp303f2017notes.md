@@ -817,3 +817,12 @@ root.accept(new ListDirectory());
 > And it returned Computer Science!
 
 ---
+---
+
+# 2017-11-16
+
+## Functional programming!!
+
+### Supplier
+
+Difference
