@@ -1193,4 +1193,121 @@ let rec free_vars e = match e with
 ---
 ---
 
-# 2017-11-
+# 2017-11-17
+
+## Variable substitution
+
+> Let's define it as:  
+[e'/x]e Replace all **free** occurences of the variable _x_ in the expression _e_ with expression _e'_.
+
+> You can read it as a function:  
+Input: expression
+
+
+Example:
+~~~ocaml
+e = if x = 1 then y + 2 else x + y
+
+[w*2/x] e = if (w*2) = 1 then y + 2 else (w*2)+y
+(*e'*)
+
+[e'/x] ( n ) = n
+
+[e'/x] ( x ) = e'
+
+[e'/x] ( y ) = y where x != y
+
+(* Push the substitution *)
+
+[e'/x] ( let y = e1 in e2 end ) = let y = [e'/x]e1 in [e'/x]e2 end
+
+[5/x] ( let y = x + 1 in x + y end
+  = let y = 5 + 1 in [5 + y] end (* NOPE *)
+  Rename x
+  [5/x] ( let x1 = x + 1 in x + y end )
+  = let x1 = 5 + 1 in x1 + y end
+
+[y*5/x] ( let y = x + 1 in x + y end )
+let y = (y*5) + 1 in (y*5) + y end
+    |---------------|---------|
+
+y not in FV(e')
+y != x
+
+(* / \ "CAPTURE" AVOIDING (different y's)
+ *  |                                     *)
+
+let genCounter =
+let counter = ref 0 in
+((fun x ->
+  let _ = counter := !counter+1 in
+  x ^ string (!counter)),
+fun () ->
+  counter := 0)
+
+let (freshVar, resetCtr) = genCounter
+
+let rec subst ((e', x) as s) e = match e with
+  | Int _ -> e
+  | Bool _ -> e
+  | Var y -> if x = y then e' else e
+  | If (e0, e1, e2) -> If (subst s e0, subst s e1, subst s e2)
+  | Primop (po, args) -> Primop (po, List.map (subst s) args)
+  | Let (Val (e1, y), e2) ->
+      if x = y || member y (freeVars e') then
+        let y' = freshVar y in
+        let e2' = rename (, y) e2 in
+        ...
+      else
+        Let (Val (subst s e1, y), subst s e2)
+and rename r e = subst r e
+
+[y*5/x] ( let a = x + 1 in x + a end )
+(* 1. Rename y with a in (x+y)
+      Where a is a fresh variable
+ * 2. let a = x + 1 in x + a *)
+
+(* continued *)
+let rec eval e = match e with
+  | Int _ -> e
+  | Bool _ -> e
+  | If (e, e1, e2) ->
+      (match eval e with
+       | Bool true -> eval e1
+       | Bool false -> eval e2
+       | _ -> raise (Stuck "guard is not a bool"))
+  (* ADD : primitive operations +, -, *, <, = *)
+  | Primop (op, args) ->
+      let argvalues = List.map eval args in
+      (match evalOp (po, argvalues) with
+       | None -> raise (Stuck "Bad arguments to primitive operation")
+       | Some v -> v)
+  | Let (Val (e1, y), e2) ->
+      let v1 = eval e1 in
+        eval (subst (e1, y) e2)
+
+~~~
+
+### Functions
+
+BNF :
+- Operations op ::= ...
+- Expressions e ::= ... | fn y => e | e1 e2
+
+FV ( e1 e2 ) = FV(e1) union FV(e2)
+
+FV(fun x = e) = FV(e)\\{x}
+
+[e'/x](e1 e2) = [e'/x]e1 [e'/x]e2
+
+[e'/x](fun y = e) = fun y = [e' x]e
+
+> CAPTURE AVOIDING
+
+_**Values are propagated via substitution**_  
+(Call by value language)
+
+---
+---
+
+# 2017-11-2
