@@ -1310,4 +1310,34 @@ _**Values are propagated via substitution**_
 ---
 ---
 
+# 2017-11-21
+
+## Type inference
+
+~~~ocaml
+if 3 then 4 else 2          X
+if true then 2 else false   X
+true * false -1             X
+
+let y = x in y + 1 end      (* Could be considered ill-typed, many language consider it ill-typed, x out of scope *)
+
+let y = true in
+  let y = 3 in y + y end end
+
+(* Collect assumptions (x is and int -> y is an int -> x * y is an int) *)
+let x = 3 in let y = x + 1 in x * y end end
+                           (* Given x:Int, y:Int *)
+
+(* zzz *)
+
+type tp = Int | Bool
+~~~
+
+...
+
+---
+---
+
 # 2017-11-2
+
+- > # ``a``
