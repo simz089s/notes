@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_151" class="java.beans.XMLDecoder">
+ <object class="ca.mcgill.cs.stg.jetuml.diagrams.SequenceDiagramGraph">
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ImplicitParameterNode" id="ImplicitParameterNode0">
+    <void id="Rectangle2D$Double0" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double0"/>
+       <double>60.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double0"/>
+       <double>164.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double0"/>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>client:</string>
+     </void>
+    </void>
+    <void method="addChild">
+     <object class="ca.mcgill.cs.stg.jetuml.graph.CallNode" id="CallNode0">
+      <void id="Rectangle2D$Double1" property="bounds">
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>x</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double1"/>
+         <double>92.0</double>
+        </void>
+       </void>
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>y</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double1"/>
+         <double>70.0</double>
+        </void>
+       </void>
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>height</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double1"/>
+         <double>74.0</double>
+        </void>
+       </void>
+      </void>
+      <void property="bounds">
+       <object idref="Rectangle2D$Double1"/>
+      </void>
+      <void property="parent">
+       <object idref="ImplicitParameterNode0"/>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ImplicitParameterNode" id="ImplicitParameterNode1">
+    <void id="Rectangle2D$Double2" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double2"/>
+       <double>350.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double2"/>
+       <double>164.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double2"/>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>c:Corporation</string>
+     </void>
+    </void>
+    <void method="addChild">
+     <object class="ca.mcgill.cs.stg.jetuml.graph.CallNode" id="CallNode1">
+      <void id="Rectangle2D$Double3" property="bounds">
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>x</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double3"/>
+         <double>382.0</double>
+        </void>
+       </void>
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>y</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double3"/>
+         <double>94.0</double>
+        </void>
+       </void>
+      </void>
+      <void property="bounds">
+       <object idref="Rectangle2D$Double3"/>
+      </void>
+      <void property="parent">
+       <object idref="ImplicitParameterNode1"/>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ImplicitParameterNode" id="ImplicitParameterNode2">
+    <void id="Rectangle2D$Double4" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double4"/>
+       <double>510.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double4"/>
+       <double>164.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double4"/>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>inv:Inventory</string>
+     </void>
+    </void>
+    <void method="addChild">
+     <object class="ca.mcgill.cs.stg.jetuml.graph.CallNode" id="CallNode2">
+      <void id="Rectangle2D$Double5" property="bounds">
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>x</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double5"/>
+         <double>542.0</double>
+        </void>
+       </void>
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>y</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double5"/>
+         <double>70.0</double>
+        </void>
+       </void>
+      </void>
+      <void property="bounds">
+       <object idref="Rectangle2D$Double5"/>
+      </void>
+      <void property="parent">
+       <object idref="ImplicitParameterNode2"/>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ImplicitParameterNode" id="ImplicitParameterNode3">
+    <void id="Rectangle2D$Double6" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double6"/>
+       <double>680.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double6"/>
+       <double>164.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double6"/>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>v:Visitor</string>
+     </void>
+    </void>
+    <void method="addChild">
+     <object class="ca.mcgill.cs.stg.jetuml.graph.CallNode" id="CallNode3">
+      <void id="Rectangle2D$Double7" property="bounds">
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>x</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double7"/>
+         <double>712.0</double>
+        </void>
+       </void>
+       <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+        <string>y</string>
+        <void method="set">
+         <object idref="Rectangle2D$Double7"/>
+         <double>70.0</double>
+        </void>
+       </void>
+      </void>
+      <void property="bounds">
+       <object idref="Rectangle2D$Double7"/>
+      </void>
+      <void property="parent">
+       <object idref="ImplicitParameterNode3"/>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.CallEdge">
+    <void property="middleLabel">
+     <string>accept(this)</string>
+    </void>
+   </object>
+   <object idref="CallNode0"/>
+   <object idref="CallNode1"/>
+  </void>
+ </object>
+</java>
