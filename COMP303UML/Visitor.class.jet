@@ -3,79 +3,61 @@
  <object class="ca.mcgill.cs.stg.jetuml.diagrams.ClassDiagramGraph">
   <void method="restoreRootNode">
    <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode0">
-    <void property="attributes">
-     <void property="text">
-      <string>- String aName</string>
-     </void>
-    </void>
     <void id="Rectangle2D$Double0" property="bounds">
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>x</string>
       <void method="set">
        <object idref="Rectangle2D$Double0"/>
-       <double>80.0</double>
+       <double>660.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>y</string>
       <void method="set">
        <object idref="Rectangle2D$Double0"/>
-       <double>20.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>width</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double0"/>
-       <double>200.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>height</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double0"/>
-       <double>80.0</double>
+       <double>360.0</double>
       </void>
      </void>
     </void>
     <void property="bounds">
      <object idref="Rectangle2D$Double0"/>
     </void>
-    <void property="methods">
-     <void property="text">
-      <string>+ String getName()
-# AbstractFile(String pName)</string>
-     </void>
-    </void>
     <void property="name">
      <void property="text">
-      <string>AbstractFile</string>
+      <string>ListVisitor</string>
      </void>
     </void>
    </object>
   </void>
   <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode1">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.InterfaceNode" id="InterfaceNode0">
     <void id="Rectangle2D$Double1" property="bounds">
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>x</string>
       <void method="set">
        <object idref="Rectangle2D$Double1"/>
-       <double>20.0</double>
+       <double>700.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>y</string>
       <void method="set">
        <object idref="Rectangle2D$Double1"/>
-       <double>180.0</double>
+       <double>100.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>width</string>
       <void method="set">
        <object idref="Rectangle2D$Double1"/>
-       <double>200.0</double>
+       <double>240.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double1"/>
+       <double>100.0</double>
       </void>
      </void>
     </void>
@@ -84,185 +66,9 @@
     </void>
     <void property="methods">
      <void property="text">
-      <string>+ void accept(Visitor visitor)</string>
-     </void>
-    </void>
-    <void property="name">
-     <void property="text">
-      <string>File</string>
-     </void>
-    </void>
-   </object>
-  </void>
-  <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode2">
-    <void id="Rectangle2D$Double2" property="bounds">
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>x</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double2"/>
-       <double>220.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>y</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double2"/>
-       <double>180.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>width</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double2"/>
-       <double>200.0</double>
-      </void>
-     </void>
-    </void>
-    <void property="bounds">
-     <object idref="Rectangle2D$Double2"/>
-    </void>
-    <void property="methods">
-     <void property="text">
-      <string>+ void accept(Visitor visitor)</string>
-     </void>
-    </void>
-    <void property="name">
-     <void property="text">
-      <string>SymLink</string>
-     </void>
-    </void>
-   </object>
-  </void>
-  <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode3">
-    <void id="Rectangle2D$Double3" property="bounds">
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>x</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double3"/>
-       <double>410.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>y</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double3"/>
-       <double>180.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>width</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double3"/>
-       <double>200.0</double>
-      </void>
-     </void>
-    </void>
-    <void property="bounds">
-     <object idref="Rectangle2D$Double3"/>
-    </void>
-    <void property="methods">
-     <void property="text">
-      <string>+ void accept(Visitor visitor)</string>
-     </void>
-    </void>
-    <void property="name">
-     <void property="text">
-      <string>Directory</string>
-     </void>
-    </void>
-   </object>
-  </void>
-  <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.InterfaceNode" id="InterfaceNode0">
-    <void id="Rectangle2D$Double4" property="bounds">
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>x</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double4"/>
-       <double>320.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>y</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double4"/>
-       <double>30.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>width</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double4"/>
-       <double>180.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>height</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double4"/>
-       <double>80.0</double>
-      </void>
-     </void>
-    </void>
-    <void property="bounds">
-     <object idref="Rectangle2D$Double4"/>
-    </void>
-    <void property="methods">
-     <void property="text">
-      <string>String getName()
-void accept(Visitor visitor)</string>
-     </void>
-    </void>
-    <void property="name">
-     <void property="text">
-      <string>«interface»
-IFile</string>
-     </void>
-    </void>
-   </object>
-  </void>
-  <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.InterfaceNode" id="InterfaceNode1">
-    <void id="Rectangle2D$Double5" property="bounds">
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>x</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double5"/>
-       <double>750.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>y</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double5"/>
-       <double>30.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>width</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double5"/>
-       <double>260.0</double>
-      </void>
-     </void>
-     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
-      <string>height</string>
-      <void method="set">
-       <object idref="Rectangle2D$Double5"/>
-       <double>100.0</double>
-      </void>
-     </void>
-    </void>
-    <void property="bounds">
-     <object idref="Rectangle2D$Double5"/>
-    </void>
-    <void property="methods">
-     <void property="text">
-      <string>void visitFile(File pFile)
-void visitSymLink(SymLink pSymLink)
-void visitDirectory(Directory pDirectory)</string>
+      <string>void visitConcreteFile(ConcreteFile)
+void visitDirectory(Directory)
+void visitSymLink(SymLink)</string>
      </void>
     </void>
     <void property="name">
@@ -274,62 +80,231 @@ Visitor</string>
    </object>
   </void>
   <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode1">
+    <void id="Rectangle2D$Double2" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double2"/>
+       <double>900.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double2"/>
+       <double>350.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>width</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double2"/>
+       <double>120.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double2"/>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>SearchVisitor</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode2">
+    <void id="Rectangle2D$Double3" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double3"/>
+       <double>450.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double3"/>
+       <double>300.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>width</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double3"/>
+       <double>140.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double3"/>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>void accept(Visitor)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>SymLink</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode3">
+    <void id="Rectangle2D$Double4" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double4"/>
+       <double>220.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double4"/>
+       <double>340.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>width</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double4"/>
+       <double>140.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double4"/>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>void accept(Visitor)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>Directory</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
    <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode4">
+    <void id="Rectangle2D$Double5" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double5"/>
+       <double>30.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double5"/>
+       <double>340.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>width</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double5"/>
+       <double>140.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double5"/>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>void accept(Visitor)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>ConcreteFile</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.InterfaceNode" id="InterfaceNode1">
     <void id="Rectangle2D$Double6" property="bounds">
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>x</string>
       <void method="set">
        <object idref="Rectangle2D$Double6"/>
-       <double>810.0</double>
+       <double>370.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>y</string>
       <void method="set">
        <object idref="Rectangle2D$Double6"/>
-       <double>170.0</double>
+       <double>100.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>width</string>
       <void method="set">
        <object idref="Rectangle2D$Double6"/>
-       <double>120.0</double>
+       <double>140.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double6"/>
+       <double>80.0</double>
       </void>
      </void>
     </void>
     <void property="bounds">
      <object idref="Rectangle2D$Double6"/>
     </void>
+    <void property="methods">
+     <void property="text">
+      <string>File search(String)
+void accept(Visitor)</string>
+     </void>
+    </void>
     <void property="name">
      <void property="text">
-      <string>DefaultVisitor</string>
+      <string>«interface»
+File</string>
      </void>
     </void>
    </object>
   </void>
   <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode5">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.InterfaceNode" id="InterfaceNode2">
     <void id="Rectangle2D$Double7" property="bounds">
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>x</string>
       <void method="set">
        <object idref="Rectangle2D$Double7"/>
-       <double>730.0</double>
+       <double>120.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>y</string>
       <void method="set">
        <object idref="Rectangle2D$Double7"/>
-       <double>270.0</double>
+       <double>90.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>width</string>
       <void method="set">
        <object idref="Rectangle2D$Double7"/>
-       <double>280.0</double>
+       <double>160.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
@@ -345,57 +320,180 @@ Visitor</string>
     </void>
     <void property="methods">
      <void property="text">
-      <string>+ void visitFile(File pFile)
-+ void visitSymLink(SymLink pSymLink)
-+ void visitDirectory(Directory pDirectory)</string>
+      <string>- String aName
+----------------------------------
+# AbstractFile(String)
++ String name()</string>
      </void>
     </void>
     <void property="name">
      <void property="text">
-      <string>PrintVisitor</string>
+      <string>«interface»
+AbstractFile</string>
      </void>
     </void>
    </object>
   </void>
   <void method="restoreRootNode">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode6">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.NoteNode" id="NoteNode0">
     <void id="Rectangle2D$Double8" property="bounds">
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>x</string>
       <void method="set">
        <object idref="Rectangle2D$Double8"/>
-       <double>410.0</double>
+       <double>220.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>y</string>
       <void method="set">
        <object idref="Rectangle2D$Double8"/>
-       <double>280.0</double>
+       <double>440.0</double>
       </void>
      </void>
      <void class="java.awt.geom.Rectangle2D$Double" method="getField">
       <string>width</string>
       <void method="set">
        <object idref="Rectangle2D$Double8"/>
-       <double>200.0</double>
+       <double>180.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>height</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double8"/>
+       <double>60.0</double>
       </void>
      </void>
     </void>
     <void property="bounds">
      <object idref="Rectangle2D$Double8"/>
     </void>
-    <void property="methods">
+    <void property="text">
      <void property="text">
-      <string>+ void accept(Visitor visitor)</string>
-     </void>
-    </void>
-    <void property="name">
-     <void property="text">
-      <string>HiddenDirectory</string>
+      <string>pVisitor.visitDirectory(this);
+for (File file : aFiles)
+{ file.accept(pVisitor); }</string>
      </void>
     </void>
    </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.NoteNode" id="NoteNode1">
+    <void id="Rectangle2D$Double9" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double9"/>
+       <double>460.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double9"/>
+       <double>380.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double9"/>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.NoteNode" id="NoteNode2">
+    <void id="Rectangle2D$Double10" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double10"/>
+       <double>770.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double10"/>
+       <double>440.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double10"/>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.NoteNode" id="NoteNode3">
+    <void id="Rectangle2D$Double11" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double11"/>
+       <double>450.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double11"/>
+       <double>520.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double11"/>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.PointNode" id="PointNode0">
+    <void method="translate">
+     <double>290.0</double>
+     <double>400.0</double>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.ClassNode" id="ClassNode5">
+    <void id="Rectangle2D$Double12" property="bounds">
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>x</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double12"/>
+       <double>770.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>y</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double12"/>
+       <double>240.0</double>
+      </void>
+     </void>
+     <void class="java.awt.geom.Rectangle2D$Double" method="getField">
+      <string>width</string>
+      <void method="set">
+       <object idref="Rectangle2D$Double12"/>
+       <double>120.0</double>
+      </void>
+     </void>
+    </void>
+    <void property="bounds">
+     <object idref="Rectangle2D$Double12"/>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>DefaultVisitor</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.DependencyEdge"/>
+   <object idref="InterfaceNode1"/>
+   <object idref="InterfaceNode0"/>
   </void>
   <void method="restoreEdge">
    <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge">
@@ -406,33 +504,28 @@ Visitor</string>
      </object>
     </void>
    </object>
-   <object idref="ClassNode0"/>
-   <object idref="InterfaceNode0"/>
+   <object idref="InterfaceNode2"/>
+   <object idref="InterfaceNode1"/>
   </void>
   <void method="restoreEdge">
    <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge"/>
-   <object idref="ClassNode1"/>
-   <object idref="ClassNode0"/>
-  </void>
-  <void method="restoreEdge">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge"/>
-   <object idref="ClassNode2"/>
-   <object idref="ClassNode0"/>
+   <object idref="ClassNode4"/>
+   <object idref="InterfaceNode2"/>
   </void>
   <void method="restoreEdge">
    <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge"/>
    <object idref="ClassNode3"/>
-   <object idref="ClassNode0"/>
-  </void>
-  <void method="restoreEdge">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.AggregationEdge"/>
-   <object idref="ClassNode2"/>
-   <object idref="InterfaceNode0"/>
+   <object idref="InterfaceNode2"/>
   </void>
   <void method="restoreEdge">
    <object class="ca.mcgill.cs.stg.jetuml.graph.AggregationEdge"/>
    <object idref="ClassNode3"/>
-   <object idref="InterfaceNode0"/>
+   <object idref="InterfaceNode1"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.AggregationEdge"/>
+   <object idref="ClassNode2"/>
+   <object idref="InterfaceNode1"/>
   </void>
   <void method="restoreEdge">
    <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge">
@@ -440,18 +533,32 @@ Visitor</string>
      <object idref="GeneralizationEdge$Type0"/>
     </void>
    </object>
-   <object idref="ClassNode4"/>
+   <object idref="ClassNode2"/>
    <object idref="InterfaceNode1"/>
   </void>
   <void method="restoreEdge">
-   <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge"/>
+   <object class="ca.mcgill.cs.stg.jetuml.graph.NoteEdge"/>
+   <object idref="NoteNode0"/>
+   <object idref="PointNode0"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge">
+    <void property="type">
+     <object idref="GeneralizationEdge$Type0"/>
+    </void>
+   </object>
    <object idref="ClassNode5"/>
-   <object idref="ClassNode4"/>
+   <object idref="InterfaceNode0"/>
   </void>
   <void method="restoreEdge">
    <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge"/>
-   <object idref="ClassNode6"/>
-   <object idref="ClassNode3"/>
+   <object idref="ClassNode0"/>
+   <object idref="ClassNode5"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.GeneralizationEdge"/>
+   <object idref="ClassNode1"/>
+   <object idref="ClassNode5"/>
   </void>
  </object>
 </java>
