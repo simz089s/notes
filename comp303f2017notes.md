@@ -835,3 +835,6 @@ Difference
 ## Threads and Concurrency
 
 When catch InterruptedException, just return. When interrupting blocked thread, InterruptedException thrown and interrupt flag reset to false.
+
+---
+---
