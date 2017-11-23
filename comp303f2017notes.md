@@ -838,3 +838,69 @@ When catch InterruptedException, just return. When interrupting blocked thread, 
 
 ---
 ---
+
+# 2017-11-23
+
+## Concurrency (cont.) (locks, mutexes (mutices?), semaphores)
+
+### Atomic operations
+
+> Operations aren't necessarily "atomic" as they would seem when going down to low level instructions.
+
+> Atomic operation : operation that either happens completely in one shot (in a unitary way) or not at all.
+
+- _**synchronized**_ keyword for methods (locks the _whole_ objects! At this point at least.)
+
+Propagates changes to all threads, allows all threads to see same, up to date value and stop race conditions and phantom values.
+
+Immutability wooo!
+
+- Locks (manual Lock object instead of synchronized)
+- No need to lock constructor as since the reference only exist after it has finished being created, it couldn't have been shared before.
+
+"Check then act" bug (non-atomic check and operation)
+
+- Condition object to avoid deadlock (release lock under certain conditions)
+- await
+
+~~~java
+lock.lock();
+try
+{
+	while (lock condition)
+	{
+		try
+		{
+			object.await();
+		}
+		catch (InterruptedException e)
+		{
+			return null;
+		}
+	}
+	object.changeIt();
+}
+finally
+{
+	lock.unlock();
+}
+
+/**/
+
+lock.lock();
+try
+{
+	object.changeIt();
+	// signalAll to signal await condition change
+	objectLock.signalAll(); // or objectCondition ???
+}
+finally
+{
+	lock.unlock();
+}
+~~~
+
+UI thread has all the callbacks. Find a way to schedule back into UI.
+
+---
+---
