@@ -1338,6 +1338,88 @@ type tp = Int | Bool
 ---
 ---
 
-# 2017-11-2
+# 2017-11-23
+
+## Type inference (cont.)
+
+### Generalizing to functions and function application
+
+~~~
+Gamma,x : T1 |- e : T2  
+----------------------------- T-FN  
+Gamma |- fn x => e : T1 -> T2
+~~~
+
+...
+
+Read T-FN rule as :
+> Expression __*fn x => e*__ has type _**T1 -> T2**_ in a typing context Gamma, if expression _**e**_ has type _**T2**_ in the **extended context _Gamma,x : T1_**
+
+Example:
+~~~ocaml
+                            / int -> int = [int/alpha](alpha -> alpha)
+fn x -> x : alpha -> alpha |  bool -> boo = [bool/alpha](alpha -> alpha)
+                            \ (char * bool) [char * bool/alpha]alpha -> alpha
+~~~
+
+~~~
+infer [(x ?)] (x + 1) = ?
+
+x alpha |- x + 1 : ?
+over
+|- fn x => x + 1 : ?
+
+fn f => fn x -> f(x) (alpha -> 3)...
+~~~
+
+Does there exist an instantiation for the type variables s.t. it becomes well-typed?
+- yes [alpha -> alpha/beta]
+- yes [alpha/beta]
+- yes [int/alpha]
+- ...
+
+~~~
+x : alpha |- x : alpha        |- 1 : int
+---------------------------------------- T-PLUS
+x : alpha |- x + 1 : int                 alpha = int
+
+fn x -> x       :   alpha -> beta
+fn x -> x + 1   :   alpha -> int
+~~~
+
+Types _T_ ::= int | bool | _T1_ -> _T2_ | _T1_ x _T2_ | alpha
+
+...
+
+> We're not just inferring types but also constraints.
+
+How to infer the type of _**fn y => if x then y else ...**_
+
+...
+
+~~~
+Gamma |- e => T/C
+~~~
+Infer type _**T**_ ...
+
+~~~
+Gamma |- e => T/C   Gamma |- e1 => T1/C1    Gamma |- e2 => T2/C2
+------------------------------------------------------------------------ T-IF
+Gamma |- if e then e1 else e2 => T1/C union C2 union {T = bool, T1 = T2}
+~~~
+
+~~~
+f : alpha, x : beta |- f alpha    f alpha, x : beta |- x : beta
+-------------------------------------------------------------- alpha = beta -> gamma
+f : alpha, x : beta |- f x : gamma
+----------------------------------------
+f : alpha |- fn x -> f x : beta -> gamma
+---------------------------------------------------
+dot |- fn f -> fn x -> f x : alpha -> beta -> gamma
+~~~
+Therefore : ``(beta -> gamma) -> beta -> gamma``
+
+---
+---
 
 - > # ``a``
