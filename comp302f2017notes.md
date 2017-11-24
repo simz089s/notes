@@ -1422,4 +1422,93 @@ Therefore : ``(beta -> gamma) -> beta -> gamma``
 ---
 ---
 
+# 2017-11-24
+
+## Solving constraints (type inference)
+
+- ``{'a = int, 'a -> 'b = int -> bool}``
+
+> Is there and instantiation for 'a and 'b s.t. all the equations are true? i.e. ``[int/'a, bool/b']``
+
+~~~
+--> { int -> 'b = int -> bool }
+--> { int = int, 'b = bool }
+--> 'b = bool -> \0
+~~~
+
+> OK!
+
+- ``{'a1 -> 'a2 = int -> 'b, 'b = bool}``
+> OK!
+
+- ``{'a1 -> 'a2 = int -> 'b, 'b = 'a2 -> 'a2}``
+> Not OK! Simplifies to ``{'a2 = 'a2 -> 'a2}`` which is unsolvable. _**Occur's Check**_
+
+### Unification
+
+> Given a set of constraints ``C`` try to simplify the set until we derive the empty set.
+
+We write ``C`` for ``C1,...,Cn`` and we assume constraints can be reordered.
+
+~~~
+{C, int = int}                          => {C}
+{C, bool = bool}                        => {C}
+{C, 'a = 'a}                            => {C}
+{C, (T1 -> T2) = (S1 -> S2)}{C, 'a = T} => {C, T1 = S1, T2 = S2}
+{C, 'a = T}                             => {[T/'a]C} provided that 'a not in FV(T)
+{C, T = 'a}                             => {[T/'a]C} provided that 'a not in FV(T)
+~~~
+
+Example : 'a = 'b -> 'c, 'b = 'a => ?
+
+> Unification is a fundamental algorithm to determine whether two objects can be made syntactically equal.
+
+- Yes, functions are _indeed_ right-associative (by default).
+
+~~~
+'a -> ('b -> (int ->'a)) = ('c * bool) -> 'c'
+
+--> 'a = ('c != bool), 'b -> (int -> 'a) = 'c'
+--> 'b -> (int -> ('c * bool)) = 'c'
+--> T = 'c' not in FV(T)
+~~~
+
+~~~ocaml
+let
+  double = fn f -> fn x -> f (f x)
+in
+  if double (fn x -> x) false then
+    double (fn x -> x + 1) 3
+  else
+    4
+~~~
+
+> This does type check because of polymorphism!
+
+- Let-Polymorphism
+- Prefix-Polymorphism
+  - (ForAll 'a.'a -> 'a) ...
+- System F
+  - ``let foo f = if f true then f 1 else f 2``
+  - foo: (ForAll 'a.'a -> 'a) --> int
+  - does not type check
+
+...
+
+- AdHoc Polymorphism? (OO overloading... double dispatch!)
+
+> 85500 lines long type inferrence w00t
+
+~~~
+let id x = x
+let f y z = z y y
+let g y = f (f y)
+let h y = g (g y)
+let k y = h (h y)
+let l y = k (k y) (* Boom! *)
+~~~
+
+---
+---
+
 - > # ``a``
