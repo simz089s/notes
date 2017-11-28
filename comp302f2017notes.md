@@ -1511,4 +1511,79 @@ let l y = k (k y) (* Boom! *)
 ---
 ---
 
+# 2017-11-28
+
+## Subtyping
+
+- Type coercion, operator overloading, inheritance
+
+**Basic subtyping principle: ``S <= T``**
+> _S_ is a subtype of T if we can provide a value of type _S_ whenever a value of type T is required.
+
+~~~
+____________    ___________     ___________
+int <= float    post <= int     zero <= int
+~~~
+
+- Int is subtype of float
+- We can supply an int whenever a float is required
+
+### Reflexive Transitive Closure
+
+...
+
+- ``int * int <= float * float``    ✅
+- ``int * float <= float * float``  ✅
+- ``zero * int <= float * float``   ✅
+- ``int * float <= float * int``  ? ❌
+
+~~~
+S! <= T1    S2 <= T2
+--------------------
+S1 * S2 <= T1 * T2
+~~~
+
+Cross-product : _**co-variant**_ type
+
+#### Records are n-ary labelled tuples
+
+~~~
+S1 <= T1    ...   Sn <= Tn
+------------------------------------S-RDepth
+{X1:S1,...,xn:Sn} <= {x1:T1,...xn:T}
+
+n < k
+-------------------------------------S-Width
+{X1:T1,...,xk:Tn} <= {x1:T1,...,xn:Tn}
+
+where \omega is a permutation
+----------------------------------------------------------------------S-Perm
+{X1:S1,...,xk:Tk} <= {x\omega(1):T\omega(1),...,x\omega(n):T\omega(n)}
+~~~
+
+~~~
+let r have type { x : int }
+
+r.x + 5
+
+Can I supply a point { x:int, y:int } for r ? Yes!
+~~~
+
+Can we provide a function ``float -> int`` whenever a function ``float -> float`` is required? Yes.
+
+What about ``float -> int <= int -> int``? _**Contra-variant**_!
+
+> Functions are co-variant in the output  
+they are contra-variant in the input!
+
+~~~
+contra:
+T1 <= S1    S2 <= T2
+--------------------
+S1 -> S2 <= T1 -> T2
+~~~
+
+---
+---
+
 - > # ``a``
