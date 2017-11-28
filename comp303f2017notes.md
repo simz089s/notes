@@ -904,3 +904,57 @@ UI thread has all the callbacks. Find a way to schedule back into UI.
 
 ---
 ---
+
+# 2017-11-28
+
+## Serialization
+
+### CSV
+
+Limited
+
+### JSON
+
+Objects, recursive data (try to avoid though pls)
+
+Problem
+- Recursion
+- References! (oh no)
+
+How to deal with references?
+
+### XML
+
+> (Ugh.)
+
+Keep IDs and check for every object if already in our pool of serialized objects
+
+#### JavaBeans
+
+- Conventions for coding classes
+- Allows for XML serialization
+- GUIs, GUI builders, ...
+
+Encodes types, ...
+
+Encodes way to reconstruct object.
+
+Still, complexity can grow fast.
+
+- Inject own serialization!
+
+General framework
+
+All these allow to do stuff like serialize in such a way that de-serializing would print Hello World!
+
+### Binary serialization
+
+Declare class implements Serializable
+- Similar to Cloneable reasons
+- Shallow vs Deep serialization
+- Here is opposite of Clone, default is shallow, but sometimes you do not want to serialize something (''transient'' keyword)
+- Binary unreadable (or difficult), so changing class changes hash and de-serialization becomes impossible. Has to have same hash ''private static final long serialVersioUID''
+- Very strict/paranoid/limited flexibility
+
+---
+---
