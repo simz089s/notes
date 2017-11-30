@@ -958,3 +958,46 @@ Declare class implements Serializable
 
 ---
 ---
+
+# 2017-11-30
+
+-...zzz
+- Delegate
+- Null Object
+- ...
+
+## UNIX !
+
+~~~bash
+$ apt moo
+        (__)
+        (oo)
+  /------\/
+ / |    ||
+*  /\---/\
+   ~~   ~~
+..."Have you mooed today?"...
+~~~
+
+## Review
+
+> See ReviewFinalBiker UML diagram
+
+11 code, 6 diagram, 3 other over 20
+
+### Common errors
+
+- ...
+- Conditions independent of any locks (shouldn't happen, makes no sense as condition doesn't do anything)
+
+~~~java
+private final Lock lock = new ReentrantLock();
+private final Condition condition = lock.newCondition();
+~~~
+
+---
+---
+
+# THE END.
+
+# > FIN.

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_151" class="java.beans.XMLDecoder">
+ <object class="ca.mcgill.cs.stg.jetuml.diagrams.ClassDiagramGraph">
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode0">
+    <void property="bounds">
+     <void property="x">
+      <int>170</int>
+     </void>
+     <void property="y">
+      <int>240</int>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>final Biker schedule(Location) throws SchedulingException
+- boolean checkIfAvailable()
+- void notifyObservers(Biker, Location)
++ final addObserver(SchedulingObserver)
+# abstract Biker actualSchedule(Location)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>abstract
+AbstractScheduler</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode1">
+    <void property="bounds">
+     <void property="x">
+      <int>340</int>
+     </void>
+     <void property="y">
+      <int>130</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>client</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode2">
+    <void property="bounds">
+     <void property="x">
+      <int>580</int>
+     </void>
+     <void property="y">
+      <int>140</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>Location</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode3">
+    <void property="bounds">
+     <void property="x">
+      <int>20</int>
+     </void>
+     <void property="y">
+      <int>20</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>SomeCrappyApp</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode4">
+    <void property="bounds">
+     <void property="x">
+      <int>640</int>
+     </void>
+     <void property="y">
+      <int>350</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>SchedulingException</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.NoteNode" id="NoteNode0">
+    <void property="bounds">
+     <void property="x">
+      <int>800</int>
+     </void>
+     <void property="y">
+      <int>260</int>
+     </void>
+    </void>
+    <void property="text">
+     <void property="text">
+      <string>public Biker schedule(Location)
+{
+  if( !checkAvailable() ) throws new NotAvailableException();
+  Biker myBiker = actualSchedule(pLocation);
+  notifyObservers(myBiker, pLocation);
+}</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.InterfaceNode" id="InterfaceNode0">
+    <void property="bounds">
+     <void property="x">
+      <int>50</int>
+     </void>
+     <void property="y">
+      <int>130</int>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string>void scheduled(Biker, Location)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>«interface»
+SchedulingObserver</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode5">
+    <void property="bounds">
+     <void property="x">
+      <int>130</int>
+     </void>
+     <void property="y">
+      <int>410</int>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string># Biker actualSchedule(Location)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>WeatherBasedScheduler</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode6">
+    <void property="bounds">
+     <void property="x">
+      <int>660</int>
+     </void>
+     <void property="y">
+      <int>540</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>YellowConeEverywhereException</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode7">
+    <void property="bounds">
+     <void property="x">
+      <int>520</int>
+     </void>
+     <void property="y">
+      <int>540</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>IceStormException</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode8">
+    <void property="bounds">
+     <void property="x">
+      <int>360</int>
+     </void>
+     <void property="y">
+      <int>410</int>
+     </void>
+    </void>
+    <void property="methods">
+     <void property="text">
+      <string># Biker actualSchedule(Location)</string>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>TrafficBasedScheduler</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode9">
+    <void property="bounds">
+     <void property="x">
+      <int>840</int>
+     </void>
+     <void property="y">
+      <int>460</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>NotAvailableException</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreRootNode">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.nodes.ClassNode" id="ClassNode10">
+    <void property="bounds">
+     <void property="x">
+      <int>590</int>
+     </void>
+     <void property="y">
+      <int>260</int>
+     </void>
+    </void>
+    <void property="name">
+     <void property="text">
+      <string>Biker</string>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.DependencyEdge"/>
+   <object idref="ClassNode0"/>
+   <object idref="ClassNode2"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.DependencyEdge"/>
+   <object idref="ClassNode1"/>
+   <object idref="ClassNode0"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge">
+    <void property="type">
+     <object class="java.lang.Enum" method="valueOf">
+      <class>ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge$Type</class>
+      <string>Implementation</string>
+     </object>
+    </void>
+   </object>
+   <object idref="ClassNode3"/>
+   <object idref="InterfaceNode0"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.AggregationEdge">
+    <void property="middleLabel">
+     <string>aObservers</string>
+    </void>
+   </object>
+   <object idref="ClassNode0"/>
+   <object idref="InterfaceNode0"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge"/>
+   <object idref="ClassNode5"/>
+   <object idref="ClassNode0"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge"/>
+   <object idref="ClassNode6"/>
+   <object idref="ClassNode4"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge"/>
+   <object idref="ClassNode7"/>
+   <object idref="ClassNode4"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge"/>
+   <object idref="ClassNode8"/>
+   <object idref="ClassNode0"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.DependencyEdge"/>
+   <object idref="ClassNode8"/>
+   <object idref="ClassNode6"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.DependencyEdge"/>
+   <object idref="ClassNode5"/>
+   <object idref="ClassNode7"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.GeneralizationEdge"/>
+   <object idref="ClassNode9"/>
+   <object idref="ClassNode4"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.DependencyEdge"/>
+   <object idref="ClassNode0"/>
+   <object idref="ClassNode4"/>
+  </void>
+  <void method="restoreEdge">
+   <object class="ca.mcgill.cs.stg.jetuml.graph.edges.AggregationEdge">
+    <void property="endLabel">
+     <string>*</string>
+    </void>
+    <void property="middleLabel">
+     <string>aBikers</string>
+    </void>
+   </object>
+   <object idref="ClassNode0"/>
+   <object idref="ClassNode10"/>
+  </void>
+ </object>
+</java>
