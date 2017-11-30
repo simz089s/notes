@@ -1586,4 +1586,39 @@ S1 -> S2 <= T1 -> T2
 ---
 ---
 
+# 2017-11-30
+
+## Revisiting references...
+
+~~~
+expression e ::= ... | e1 := e2 | !e | ref e | ()
+types T      ::= ... | T ref | unit
+~~~
+
+~~~ocaml
+let x = ref (2 + 3) in
+x := !x * 2
+~~~
+
+> Types are a general organizing principle to understand a feature!
+
+~~~
+'C |- e1:T ref    'C |- e2:T
+----------------------------
+'C |- e1 := e2 : unit
+
+'C |- e:T ref
+-------------
+'C |- !e:T
+
+'C |- e:T
+-------------------
+T |- ref e : T ref'
+~~~
+
+> Rustled jimmies because functional/OO > procedural
+
+---
+---
+
 - > # ``a``
