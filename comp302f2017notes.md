@@ -1621,4 +1621,73 @@ T |- ref e : T ref'
 ---
 ---
 
+# 2017-12-01
+
+## Fin
+
+- Four main goals of COMP 302
+
+### Final
+- Two-sided page crib sheet
+
+~~~ocaml
+let rec change coins amt =
+  if amt = 0 then []
+  else
+    begin match coins with
+      | [] -> raise Change
+      | coin::cs ->
+          if coin > amt then
+            change cs amt
+          else
+            try
+              coin :: change coins (amt - coin)
+            with Change -> change cs amt
+    end
+
+let rec cchange coins amt f =
+  if amt = 0 then []
+  else
+    begin match coins with
+      | [] -> fc ()
+      | coin::cs ->
+          if coin > amt then
+            change cs amt
+          else
+            coin :: cchange coins (amt - coin) (fun () -> cchange cs amt fc)
+    end
+
+(* let rec cchange coins amt f =
+  if amt = 0 then []
+  else
+    begin match coins with
+      | [] -> fc ()
+      | coin::cs ->
+          if coin > amt then
+            change cs amt
+          else
+            coin :: cchange coins (amt - coin) (fun () -> cchange cs amt fc)
+    end *)
+
+type 'a tree
+  = Leaf
+  | Node of 'a tree * 'a * 'a tree
+
+let rec count_k (p : 'a -> bool) (t : 'a tree) (k : int -> 'b) : 'b =
+  match t with
+  | Leaf -> k 0
+  | Node (l, x, r) ->
+      if p x then
+        count_k p l (fun n -> count_k p r (fun m -> k (m + n + 1)))
+      else
+        count_k p r (fun n -> count_k p l (fun m -> k (m + n)))
+~~~
+
+---
+
+# THE END
+
+---
+---
+
 - > # ``a``
