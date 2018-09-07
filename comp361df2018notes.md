@@ -26,3 +26,8 @@
     + Minueto gfx lib supported
 * Whatever platform
 * <span style="color:red"><b><i>UI sketch (first draft implementation) demo in November</i></b></span>
+
+
+# 2018-09-07
+
+## See slides
